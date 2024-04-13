@@ -7,9 +7,11 @@ import { ExcluirComponent } from './excluir/excluir.component';
 
 @NgModule({
   declarations: [
-    ConsultarTodasComponent,
-    ExcluirComponent
+    ConsultarTodasComponent
   ],
-  imports: [CommonModule, VacinaRoutingModule],
+  imports: [
+    CommonModule,
+    VacinaRoutingModule
+  ],
 })
 export class VacinaModule {}

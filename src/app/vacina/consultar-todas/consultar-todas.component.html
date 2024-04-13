@@ -1,1 +1,25 @@
-<p>consultar-todas works!</p>
+
+<div>
+  <table class = "table table-striped">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>País de origem</th>
+        <th>Nome do pesquisador</th>
+        <th>Estágio</th>
+        <th>Pesquisa iniciada em:</th>
+        <th>Média avaliação</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let vacina of vacinas">
+        <td>{{vacina.nome}}</td>
+        <td>{{vacina.paisOrigem.pais}}</td>
+        <td>{{vacina.pesquisadorResponsavel.nome}}</td>
+        <td>{{vacina.estagio}}</td>
+        <td>{{ vacina.dataInicioPesquisa}}</td>
+        <td>{{vacina.mediaAvaliacao}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

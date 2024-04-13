@@ -1,15 +1,8 @@
+import { VacinaService } from './../../shared/service/vacina.service';
 import { Component, OnInit } from '@angular/core';
 import { Data } from '@angular/router';
-
-export interface Vacina {
-  id: number;
-  nome: string;
-  pais: string;
-  pessoa: string;
-  estagio: number;
-  dataInicia: Data;
-  media: number;
-}
+import { Vacina } from '../../shared/model/vacina';
+import { error } from 'console';
 
 @Component({
   selector: 'app-consultar-todas',
@@ -17,11 +10,24 @@ export interface Vacina {
   styleUrl: './consultar-todas.component.scss'
 })
 
-export class ConsultarTodasComponent {
+export class ConsultarTodasComponent implements OnInit {
+  public vacinas: Vacina[] = [];
 
-  constructor() { }
+  constructor(private vacinaService: VacinaService) { }
 
   ngOnInit(): void{
+    this.consultarTodasVacinas();
+  }
 
+  private consultarTodasVacinas() {
+    this.vacinaService.ConsultarTodas().subscribe(
+      resultado => {
+        this.vacinas = resultado;
+      },
+
+      erro => {
+        console.error('Erro ao consultar todas as vacinas' + erro);
+      }
+    );
   }
 }
