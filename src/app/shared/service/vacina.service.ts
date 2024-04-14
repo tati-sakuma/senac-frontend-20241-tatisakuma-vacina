@@ -15,6 +15,10 @@ export class VacinaService {
     return this.httpClient.get<Array<Vacina>>(this.API + '/todas')
   }
 
+  Excluir (id: number): Observable<boolean> {
+    return this.httpClient.delete<boolean>(this.API + '/excluir/{1}')
+  }
+
 //TODO declarar demais metodos do VacinaController
 
 }
