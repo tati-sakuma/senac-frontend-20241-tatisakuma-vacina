@@ -1,8 +1,7 @@
 import { VacinaService } from './../../shared/service/vacina.service';
 import { Component, OnInit } from '@angular/core';
-import { Data } from '@angular/router';
 import { Vacina } from '../../shared/model/vacina';
-import { error } from 'console';
+import { CartaSeletor } from '../../shared/model/seletor/vacina-seletor';
 
 @Component({
   selector: 'app-consultar-todas',
@@ -11,7 +10,9 @@ import { error } from 'console';
 })
 
 export class ConsultarTodasComponent implements OnInit {
+
   public vacinas: Vacina[] = [];
+  public seletor: CartaSeletor = new CartaSeletor();
 
   constructor(private vacinaService: VacinaService) { }
 
@@ -30,4 +31,8 @@ export class ConsultarTodasComponent implements OnInit {
       }
     );
   }
+
+  
+
+
 }

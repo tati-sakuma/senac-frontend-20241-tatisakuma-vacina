@@ -1,26 +1,58 @@
+<div class="container">
+  <h3 class="alert alert-sucess">Vacinas Cadastradas</h3>
 
-<div>
-  <table class = "table table-striped">
-    <thead>
-      <tr>
-        <th>Nome</th>
-        <th>País de origem</th>
-        <th>Nome do pesquisador</th>
-        <th>Estágio</th>
-        <th>Pesquisa iniciada em:</th>
-        <th>Média avaliação</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let vacina of vacinas">
-        <td>{{vacina.nome}}</td>
-        <td>{{vacina.paisOrigem.pais}}</td>
-        <td>{{vacina.pesquisadorResponsavel.nome}}</td>
-        <td>{{vacina.estagio}}</td>
-        <td>{{ vacina.dataInicioPesquisa}}</td>
-        <td>{{vacina.mediaAvaliacao}}</td>
-        <td><button type="button" class="btn btn-outline-danger">Excluir</button></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="card">
+    <div class="card-header bg-light">
+      <h5>Filtros</h5>
+    </div>
+    <div class="card-body">
+      <form>
+        <div class="row">
+          <div class="col-md-3">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" class="form-control" name="nome" >
+          </div>
+          <div class="col-md-3">
+            <label for="nome">País</label>
+            <input type="text" id="nome" class="form-control" name="pais">
+          </div>
+          <div class="col-md-3">
+            <label for="nome">&nbsp;</label>
+            <button type="button" class="form-control btn btn-outline-primary">
+              <i class="bi bi-search"></i> Pesquisar
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <br><br>
+  <div class="card">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>País de origem</th>
+          <th>Nome do pesquisador</th>
+          <th>Estágio</th>
+          <th>Pesquisa iniciada em:</th>
+          <th>Média avaliação</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let vacina of vacinas">
+          <td>{{vacina.nome}}</td>
+          <td>{{vacina.paisOrigem.pais}}</td>
+          <td>{{vacina.pesquisadorResponsavel.nome}}</td>
+          <td>{{vacina.estagio}}</td>
+          <td>{{ vacina.dataInicioPesquisa}}</td>
+          <td>{{vacina.mediaAvaliacao}}</td>
+          <td><button type="button" class="btn btn-outline-danger">
+            <i class="bi bi-trash3"></i> Excluir</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
 </div>

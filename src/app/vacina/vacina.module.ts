@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { VacinaRoutingModule } from './vacina-routing.module';
 import { ConsultarTodasComponent } from './consultar-todas/consultar-todas.component';
-import { ExcluirComponent } from './excluir/excluir.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -11,7 +11,9 @@ import { ExcluirComponent } from './excluir/excluir.component';
   ],
   imports: [
     CommonModule,
-    VacinaRoutingModule
+    VacinaRoutingModule,
+    FormsModule
   ],
 })
+
 export class VacinaModule {}
