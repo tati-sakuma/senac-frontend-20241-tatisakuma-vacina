@@ -1,7 +1,7 @@
-import { VacinaService } from './../../shared/service/vacina.service';
 import { Component, OnInit } from '@angular/core';
+import { VacinaService } from './../../shared/service/vacina.service';
 import { Vacina } from '../../shared/model/vacina';
-import { CartaSeletor } from '../../shared/model/seletor/vacina-seletor';
+import { VacinaSeletor } from '../../shared/model/seletor/vacina.seletor';
 
 @Component({
   selector: 'app-consultar-todas',
@@ -11,8 +11,8 @@ import { CartaSeletor } from '../../shared/model/seletor/vacina-seletor';
 
 export class ConsultarTodasComponent implements OnInit {
 
-  public vacinas: Vacina[] = [];
-  public seletor: CartaSeletor = new CartaSeletor();
+  public vacinas: Array<Vacina> = new Array();
+  public seletor: VacinaSeletor = new VacinaSeletor();
 
   constructor(private vacinaService: VacinaService) { }
 
@@ -20,8 +20,8 @@ export class ConsultarTodasComponent implements OnInit {
     this.consultarTodasVacinas();
   }
 
-  private consultarTodasVacinas() {
-    this.vacinaService.ConsultarTodas().subscribe(
+  public consultarTodasVacinas() {
+    this.vacinaService.consultarTodasVacinas().subscribe(
       resultado => {
         this.vacinas = resultado;
       },
@@ -32,7 +32,18 @@ export class ConsultarTodasComponent implements OnInit {
     );
   }
 
-  
+  public pesquisar () {
+    this.vacinaService.listarComSeletor(this.seletor).subscribe(
+      resultado => {
+        this.vacinas = resultado;
+      },
+      erro => {
+        console.error('Erro ao consultar filtro de vacinas', erro);
+      }
+    )
+  }
 
-
+  public limpar(){
+    this.seletor = new VacinaSeletor();
+  }
 }

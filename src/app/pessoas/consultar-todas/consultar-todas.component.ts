@@ -22,7 +22,7 @@ export class ConsultarTodasComponent implements OnInit {
         this.pessoas = resultado;
       },
       erro => {
-        console.error('Erro ao consultar cartas', erro);
+        console.error('Erro ao consultar ', erro);
       }
     );
   }
