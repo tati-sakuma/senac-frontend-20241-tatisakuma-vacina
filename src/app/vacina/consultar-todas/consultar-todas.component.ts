@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { VacinaService } from './../../shared/service/vacina.service';
 import { Vacina } from '../../shared/model/vacina';
 import { VacinaSeletor } from '../../shared/model/seletor/vacina.seletor';
+import { Pais } from '../../shared/model/pais';
+import { PaisService } from '../../shared/service/pais.service';
 
 @Component({
   selector: 'app-consultar-todas',
@@ -13,11 +15,15 @@ export class ConsultarTodasComponent implements OnInit {
 
   public vacinas: Array<Vacina> = new Array();
   public seletor: VacinaSeletor = new VacinaSeletor();
+  public paises: Array<Pais> = new Array();
 
-  constructor(private vacinaService: VacinaService) { }
+  constructor(private vacinaService: VacinaService, private paisService: PaisService) { }
 
   ngOnInit(): void{
     this.consultarTodasVacinas();
+    this.consultarTodosPaises();
+
+
   }
 
   public consultarTodasVacinas() {
@@ -46,4 +52,29 @@ export class ConsultarTodasComponent implements OnInit {
   public limpar(){
     this.seletor = new VacinaSeletor();
   }
+
+  public excluir(id: number) {
+    this.vacinaService.excluir(id).subscribe(
+
+      resultado => {
+
+      },
+       erro => {
+      console.error('Erro ao excluir vacina.')
+     }
+   )
+  }
+
+  public consultarTodosPaises() {
+    this.paisService.consultarTodosPaises().subscribe(
+      resultado => {
+        this.paises = resultado;
+      },
+       erro => {
+      console.error('Erro ao consultar todos os países.')
+     }
+    )
+  }
+
 }
+
