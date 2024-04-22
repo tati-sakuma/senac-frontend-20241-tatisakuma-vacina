@@ -4,7 +4,7 @@
   <h3 class="alert alert-sucess">Vacinas Cadastradas</h3>
 
   <div class="card">
-    <div class="card-header bg-light">
+    <div class="card-header" style="background-color: #e3fbe9;">
       <h5>Filtros</h5>
     </div>
     <div class="card-body">
@@ -29,7 +29,7 @@
             <input type="text" id="pesquisador" class="form-control" name="pais" [(ngModel)]="seletor.nomePesquisador">
           </div>
           <div class="col-md-3">
-            <label for="data-pesquisa">Data de início da pesquisa</label>
+            <label for="data-pesquisa">Início da pesquisa</label>
             <input type="date" class="form-control" name="data-pesquisa" [(ngModel)]="seletor.nomePesquisador">
           </div>
         </div>
@@ -37,14 +37,14 @@
         <div class="row">
           <div class="col-md-3">
             <label for="nome">&nbsp;</label>
-            <button type="button" class="form-control btn btn-outline-primary" (click)="pesquisar()">
+            <button type="button" class="form-control btn btn-outline-dark" (click)="pesquisar()">
               <i class="bi bi-search"></i> Pesquisar
             </button>
           </div>
 
           <div class="col-md-3">
             <label for="nome">&nbsp;</label>
-            <button type="button" class="form-control btn btn-outline-warning" (click)="limpar()" (click)="pesquisar()">
+            <button type="button" class="form-control btn btn-outline-dark" (click)="limpar()">
               <i class="bi bi-x-circle"></i> Limpar
             </button>
           </div>
@@ -54,40 +54,45 @@
   </div>
   <br><br>
   <div class="card">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Nome</th>
-          <th>País de origem</th>
-          <th>Nome do pesquisador</th>
-          <th>Estágio</th>
-          <th>Pesquisa iniciada em:</th>
-          <th>Média avaliação</th>
-          <th>Ações</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for(vacina of vacinas; track vacina){
-        <tr>
-          <td>{{vacina.nome}}</td>
-          <td>{{vacina.paisOrigem.pais}}</td>
-          <td>{{vacina.pesquisadorResponsavel.nome}}</td>
-          <td>{{vacina.estagio}}</td>
-          <td>{{vacina.dataInicioPesquisa}}</td>
-          <td>{{vacina.mediaAvaliacao}}</td>
-
-          <div class="row">
-            <div>
-              <td><button type="button" class="btn btn-outline-danger" (click)="excluir(vacina.id)">
-                  <i class="bi bi-trash3"></i> Excluir</button>
-                <button type="button" class="btn btn-outline-primary">
-                  <i class="bi bi-pencil"></i> Editar</button>
-              </td>
-            </div>
-          </div>
-        </tr>
-        }
-      </tbody>
-    </table>
+    <div class="card-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>País de origem</th>
+            <th>Nome do pesquisador</th>
+            <th>Estágio</th>
+            <th>Pesquisa iniciada em:</th>
+            <th>Média avaliação</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for(vacina of vacinas; track vacina){
+          <tr>
+            <td>{{vacina.nome}}</td>
+            <td>{{vacina.paisOrigem.pais}}</td>
+            <td>{{vacina.pesquisadorResponsavel.nome}}</td>
+            <td>{{vacina.estagio}}</td>
+            <td>{{vacina.dataInicioPesquisa}}</td>
+            <td>{{vacina.mediaAvaliacao}}</td>
+            <td>
+              <div class="row">
+                <div>
+                  <button type="button" class="btn btn-outline-danger" (click)="excluir(vacina.id)">
+                      <i class="bi bi-trash3"></i> Excluir
+                  </button>
+                  &nbsp;
+                  <button type="button" class="btn btn-outline-dark">
+                    <i class="bi bi-pencil"></i> Editar
+                  </button>
+                </div>
+              </div>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

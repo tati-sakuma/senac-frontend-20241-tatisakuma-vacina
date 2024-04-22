@@ -51,13 +51,14 @@ export class ConsultarTodasComponent implements OnInit {
 
   public limpar(){
     this.seletor = new VacinaSeletor();
+    this.consultarTodasVacinas();
   }
 
   public excluir(id: number) {
     this.vacinaService.excluir(id).subscribe(
 
       resultado => {
-
+        this.consultarTodasVacinas();
       },
        erro => {
       console.error('Erro ao excluir vacina.')

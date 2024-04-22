@@ -16,15 +16,24 @@ export class VacinaService {
     return this.httpClient.get<Array<Vacina>>(this.API + '/todas')
   }
 
-  excluir (vacinaId: number): Observable<boolean> {
-    return this.httpClient.delete<boolean>(this.API + '/excluir/' + vacinaId)
+  consultarVacinaID(idVacina: number): Observable<Vacina> {
+    return this.httpClient.get<Vacina>(this.API + '/consultar' + idVacina )
   }
 
   listarComSeletor(seletor: VacinaSeletor ) : Observable<Array<Vacina>> {
     return this.httpClient.post<Array<Vacina>>(this.API + '/filtro', seletor)
   }
 
+  excluir (vacinaId: number): Observable<boolean> {
+    return this.httpClient.delete<boolean>(this.API + '/excluir/' + vacinaId)
+  }
 
-//TODO declarar demais metodos do VacinaController
+  salvar(novaVacina: Vacina): Observable<any> {
+    return this.httpClient.post(this.API + '/salvar', novaVacina)
+  }
+
+  editar(vacinaEditada: Vacina): Observable<any>{
+    return this.httpClient.put(this.API + '/alterar', vacinaEditada)
+  }
 
 }
