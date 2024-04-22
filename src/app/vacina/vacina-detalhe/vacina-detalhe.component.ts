@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { VacinaService } from '../../shared/service/vacina.service';
 import { Vacina } from '../../shared/model/vacina';
+import { Pais } from '../../shared/model/pais';
+import { PaisService } from '../../shared/service/pais.service';
 
 @Component({
   selector: 'app-vacina-detalhe',
@@ -10,18 +12,17 @@ import { Vacina } from '../../shared/model/vacina';
 
 export class VacinaDetalheComponent implements OnInit{
 
-  public vacina: Vacina;
+  public vacina: Vacina = new Vacina();
+  public paises: Array<Pais> = [];
 
-  constructor(private vacinaService: VacinaService) { }
-
-
+  constructor(private vacinaService: VacinaService, private paisService: PaisService) { }
 
   ngOnInit(): void{
-
+    this.consultarTodosPaises();
   }
 
-  public salvarNovaVacina(novaVacina: Vacina) {
-    this.vacinaService.salvar(novaVacina).subscribe(
+  public salvarNovaVacina() {
+    this.vacinaService.salvar(this.vacina).subscribe(
       resultado => {
         this.vacina = resultado;
       },
@@ -42,6 +43,15 @@ export class VacinaDetalheComponent implements OnInit{
     )
   }
 
-
+  public consultarTodosPaises() {
+    this.paisService.consultarTodosPaises().subscribe(
+      resultado => {
+        this.paises = resultado;
+      },
+       erro => {
+      console.error('Erro ao consultar todos os países.')
+     }
+    )
+  }
 
 }

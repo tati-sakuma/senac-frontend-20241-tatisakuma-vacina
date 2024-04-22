@@ -2,7 +2,7 @@ import { Data } from "@angular/router";
 import { Pessoa } from "./pessoa";
 import { Pais } from "./pais";
 
-export interface Vacina {
+export class Vacina {
   id: number;
   nome: string;
   paisOrigem: Pais;

@@ -4,6 +4,7 @@ import { Vacina } from '../../shared/model/vacina';
 import { VacinaSeletor } from '../../shared/model/seletor/vacina.seletor';
 import { Pais } from '../../shared/model/pais';
 import { PaisService } from '../../shared/service/pais.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-consultar-todas',
@@ -55,15 +56,41 @@ export class ConsultarTodasComponent implements OnInit {
   }
 
   public excluir(id: number) {
-    this.vacinaService.excluir(id).subscribe(
+    Swal.fire({
+      title: "Você deseja excluir?",
+      text: "Não será possível reverter a exclusão!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      cancelButtonText: "Cancelar",
+      confirmButtonText: "Sim, continue!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.vacinaService.excluir(id).subscribe(
 
-      resultado => {
-        this.consultarTodasVacinas();
-      },
-       erro => {
-      console.error('Erro ao excluir vacina.')
-     }
-   )
+          resultado => {
+            Swal.fire({
+              title: "Excluída!",
+              text: "A vacina foi excluída com sucesso!",
+              icon: "success"
+            });
+            this.consultarTodasVacinas();
+          },
+           erro => {
+            Swal.fire({
+              title:"Atenção!",
+              text: "Erro ao excluir vacina: ",
+              icon: "error"
+           });
+
+          console.error('Erro ao excluir vacina.')
+         }
+       )
+      }
+    });
+
+
   }
 
   public consultarTodosPaises() {

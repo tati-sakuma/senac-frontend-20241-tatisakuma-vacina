@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { PessoasRoutingModule } from './pessoas-routing.module';
-import { ConsultarTodasComponent } from './consultar-todas/consultar-todas.component';
+import { ConsultarTodasComponent } from './consultar-todas-pessoas/consultar-todas.component';
 
 
 @NgModule({

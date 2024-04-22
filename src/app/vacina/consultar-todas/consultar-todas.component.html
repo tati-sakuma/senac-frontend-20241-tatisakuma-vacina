@@ -1,22 +1,21 @@
-<pre>{{seletor | json}}</pre>
+<!-- <pre>{{seletor | json}}</pre> -->
 
 <div class="container">
-  <h3 class="alert alert-sucess">Vacinas Cadastradas</h3>
+  <h3 class="mt-4">Vacinas Cadastradas</h3>
 
-  <div class="card">
+  <div class="card mt-4">
     <div class="card-header" style="background-color: #e3fbe9;">
       <h5>Filtros</h5>
     </div>
     <div class="card-body">
-      <form>
+      <form class="card-header">
         <div class="row">
           <div class="col-md-3">
             <label for="nome">Nome</label>
             <input type="text" id="nome" class="form-control" name="nome" [(ngModel)]="seletor.nomeVacina">
           </div>
-          <div class="col-md-3 form-group">
-            <label for="pais" class="form-label">País</label>
-
+          <div class=" row col-md-3 form-group">
+            <label for="nomePais" class="form-label">País</label>
             <select class="form-control" name="nomePais" [(ngModel)]="seletor.nomePais">
               @for(p of paises; track p.idPais) {
               <option value="{{ p.pais}}">{{ p.pais }} ({{ p.sigla }})</option>
@@ -79,12 +78,12 @@
             <td>
               <div class="row">
                 <div>
-                  <button type="button" class="btn btn-outline-danger" (click)="excluir(vacina.id)">
-                      <i class="bi bi-trash3"></i> Excluir
-                  </button>
-                  &nbsp;
                   <button type="button" class="btn btn-outline-dark">
                     <i class="bi bi-pencil"></i> Editar
+                  </button>
+                  &nbsp;
+                  <button type="button" class="btn btn-outline-danger" (click)="excluir(vacina.id)">
+                      <i class="bi bi-trash3"></i> Excluir
                   </button>
                 </div>
               </div>

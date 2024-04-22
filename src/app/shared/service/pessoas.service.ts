@@ -15,4 +15,9 @@ export class PessoasService {
     return this.httpClient.get<Array<Pessoa>>(this.API + '/todas');
   }
 
+  salvar(novaPessoa: Pessoa): Observable<any> {
+    return this.httpClient.post(this.API + '/salvar', novaPessoa)
+  }
+  
+
 }

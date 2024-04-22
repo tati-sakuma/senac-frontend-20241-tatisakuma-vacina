@@ -1,31 +1,37 @@
+<pre>{{vacina | json}}</pre>
 <div class="container">
-  <h3 class="alert alert-sucess">Cadastro de Vacinas</h3>
+  <h3 class="mt-4">Cadastro de Vacinas</h3>
+
   <form>
     <div class="mb-3">
       <label for="nome" class="form-label">Nome da Vacina</label>
-      <input type="text" class="form-control" name="nome"  >
+      <input type="text" id="nome" class="form-control" name="nome" [(ngModel)]="vacina.nome" >
     </div>
 
     <div class="mb-3">
       <label for="pais" class="form-label">País de origem</label>
-      <input type="text" class="form-control" name="pais"  >
+      <select class="form-control" name="nomePais" [(ngModel)]="vacina.paisOrigem">
+        @for(p of paises; track p.idPais) {
+        <option value="{{ p.pais}}">{{ p.pais }} ({{ p.sigla }})</option>
+        }
+      </select>
     </div>
 
     <div class="mb-3">
       <label for="pesquisador" class="form-label">Pesquisador responsável</label>
-      <input type="text" class="form-control" name="pesquisador" >
+      <input type="text" class="form-control" name="pesquisador" [(ngModel)]="vacina.pesquisadorResponsavel" >
     </div>
 
     <div class="mb-3">
       <label for="estagio" class="form-label">Estágio</label>
-      <input type="text" class="form-control" name="estagio"  >
+      <input type="text" class="form-control" name="estagio" [(ngModel)]="vacina.estagio" >
     </div>
 
     <div class="mb-3">
       <label for="inicioPesquisa" class="form-label">Início da Pesquisa</label>
-      <input type="date" class="form-control" name="inicioPesquisa"  >
+      <input type="date" class="form-control" name="inicioPesquisa" [(ngModel)]="vacina.dataInicioPesquisa" >
     </div>
 
-    <button type="submit" class="btn btn-primary">Salvar</button>
+    <button type="submit" class="btn btn-primary" (click)="salvarNovaVacina()">Salvar</button>
   </form>
 </div>

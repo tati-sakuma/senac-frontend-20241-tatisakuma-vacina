@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ConsultarTodasComponent } from './consultar-todas/consultar-todas.component';
+import { ConsultarTodasComponent } from './consultar-todas-pessoas/consultar-todas.component';
 
 const routes: Routes = [
   {
