@@ -39,6 +39,10 @@ export class ConsultarTodasComponent implements OnInit {
     );
   }
 
+  public consultarPorId(){
+    
+  }
+
   public pesquisar () {
     this.vacinaService.listarComSeletor(this.seletor).subscribe(
       resultado => {

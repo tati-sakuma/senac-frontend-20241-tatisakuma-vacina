@@ -28,12 +28,12 @@ export class VacinaService {
     return this.httpClient.delete<boolean>(this.API + '/excluir/' + vacinaId)
   }
 
-  salvar(novaVacina: Vacina): Observable<any> {
-    return this.httpClient.post(this.API + '/salvar', novaVacina)
+  salvar(novaVacina: Vacina): Observable<Vacina> {
+    return this.httpClient.post<Vacina>(this.API + '/salvar', novaVacina)
   }
 
-  editar(vacinaEditada: Vacina): Observable<any>{
-    return this.httpClient.put(this.API + '/alterar', vacinaEditada)
+  editar(vacinaEditada: Vacina): Observable<boolean>{
+    return this.httpClient.put<boolean>(this.API + '/alterar', vacinaEditada)
   }
 
 }

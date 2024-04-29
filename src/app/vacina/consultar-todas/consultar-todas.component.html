@@ -14,8 +14,9 @@
             <label for="nome">Nome</label>
             <input type="text" id="nome" class="form-control" name="nome" [(ngModel)]="seletor.nomeVacina">
           </div>
-          <div class=" row col-md-3 form-group">
-            <label for="nomePais" class="form-label">País</label>
+
+          <div class="col-md-3 ">
+            <label for="nomePais">País</label>
             <select class="form-control" name="nomePais" [(ngModel)]="seletor.nomePais">
               @for(p of paises; track p.idPais) {
               <option value="{{ p.pais}}">{{ p.pais }} ({{ p.sigla }})</option>

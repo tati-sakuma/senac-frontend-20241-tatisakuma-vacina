@@ -34,6 +34,10 @@ export class VacinaDetalheComponent implements OnInit{
 
       },
       erro => {
+        Swal.fire({
+          icon: "error",
+          text:"Erro ao salvar nova vacina."
+        })
         console.error('Erro ao salvar nova vacina.')
       }
     )
