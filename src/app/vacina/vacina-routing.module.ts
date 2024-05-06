@@ -5,14 +5,13 @@ import { VacinaDetalheComponent } from './vacina-detalhe/vacina-detalhe.componen
 //import { ExcluirComponent } from './excluir/excluir.component';
 
 const routes: Routes = [
-{ path: '', component: ConsultarTodasComponent },
-{ path: 'detalhe', component: VacinaDetalheComponent},
-{ path: 'detalhe/:id', component: VacinaDetalheComponent},
-
+  { path: '', component: ConsultarTodasComponent },
+  { path: 'detalhe', component: VacinaDetalheComponent },
+  { path: 'detalhe/:id', component: VacinaDetalheComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class VacinaRoutingModule { }
+export class VacinaRoutingModule {}

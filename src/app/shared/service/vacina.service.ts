@@ -12,12 +12,12 @@ export class VacinaService {
 
   constructor(private httpClient: HttpClient) { }
 
-  consultarTodasVacinas (): Observable<Array<Vacina>> {
+  consultarTodasVacinas(): Observable<Array<Vacina>> {
     return this.httpClient.get<Array<Vacina>>(this.API + '/todas')
   }
 
   consultarVacinaID(idVacina: number): Observable<Vacina> {
-    return this.httpClient.get<Vacina>(this.API + '/consultar' + idVacina )
+    return this.httpClient.get<Vacina>(this.API + '/consultar/' + idVacina )
   }
 
   listarComSeletor(seletor: VacinaSeletor ) : Observable<Array<Vacina>> {

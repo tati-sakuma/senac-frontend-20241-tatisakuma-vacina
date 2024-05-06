@@ -5,6 +5,7 @@ import { VacinaSeletor } from '../../shared/model/seletor/vacina.seletor';
 import { Pais } from '../../shared/model/pais';
 import { PaisService } from '../../shared/service/pais.service';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-consultar-todas',
@@ -18,16 +19,17 @@ export class ConsultarTodasComponent implements OnInit {
   public seletor: VacinaSeletor = new VacinaSeletor();
   public paises: Array<Pais> = new Array();
 
-  constructor(private vacinaService: VacinaService, private paisService: PaisService) { }
+  constructor(private vacinaService: VacinaService,
+              private paisService: PaisService,
+              private router: Router
+            ) { }
 
   ngOnInit(): void{
     this.consultarTodasVacinas();
     this.consultarTodosPaises();
-
-
   }
 
-  public consultarTodasVacinas() {
+  public consultarTodasVacinas(): void {
     this.vacinaService.consultarTodasVacinas().subscribe(
       resultado => {
         this.vacinas = resultado;
@@ -40,7 +42,7 @@ export class ConsultarTodasComponent implements OnInit {
   }
 
   public consultarPorId(){
-    
+
   }
 
   public pesquisar () {
@@ -57,6 +59,10 @@ export class ConsultarTodasComponent implements OnInit {
   public limpar(){
     this.seletor = new VacinaSeletor();
     this.consultarTodasVacinas();
+  }
+
+  public editar(idVacinaSelecionada: number): void {
+    this.router.navigate(['/vacina/detalhe/', idVacinaSelecionada])
   }
 
   public excluir(id: number) {
@@ -84,7 +90,7 @@ export class ConsultarTodasComponent implements OnInit {
            erro => {
             Swal.fire({
               title:"Atenção!",
-              text: "Erro ao excluir vacina: ",
+              text: "Erro ao excluir vacina: " + erro.error.mensagem,
               icon: "error"
            });
 

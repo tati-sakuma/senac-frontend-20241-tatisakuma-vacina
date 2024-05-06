@@ -4,7 +4,7 @@
   <h3 class="mt-4">Vacinas Cadastradas</h3>
 
   <div class="card mt-4">
-    <div class="card-header" style="background-color: #e3fbe9;">
+    <div class="card-header" style="background-color: #b8ffca70;">
       <h5>Filtros</h5>
     </div>
     <div class="card-body">
@@ -70,34 +70,36 @@
           </tr>
         </thead>
         <tbody>
-          @for(vacina of vacinas; track vacina){
-          <tr>
-            <td>{{vacina.nome}}</td>
-            <td>{{vacina.paisOrigem.pais}}</td>
-            <td>{{vacina.pesquisadorResponsavel.nome}}</td>
-            <td>{{vacina.estagio}}</td>
-            <td>{{vacina.dataInicioPesquisa}}</td>
-            <td>{{vacina.mediaAvaliacao}}</td>
-            <td>
-              <div class="row">
-                <div>
-                  <button type="button" class="btn btn-outline-dark">
-                    <i class="bi bi-pencil"></i> Editar
-                  </button>
-                  &nbsp;
-                  <button type="button" class="btn btn-outline-danger" (click)="excluir(vacina.id)">
-                    <i class="bi bi-trash3"></i> Excluir
-                  </button>
+          @for(vacina of vacinas; track vacina)
+          {
+            <tr>
+              <td>{{vacina.nome}}</td>
+              <td>{{vacina.paisOrigem.pais}}</td>
+              <td>{{vacina.pesquisadorResponsavel.nome}}</td>
+              <td>{{vacina.estagio}}</td>
+              <td>{{vacina.dataInicioPesquisa}}</td>
+              <td>{{vacina.mediaAvaliacao}}</td>
+              <td>
+                <div class="row">
+                  <div>
+                    <button type="button" class="btn btn-outline-dark" (click)="editar(vacina.id)">
+                      <i class="bi bi-pencil"></i> Editar
+                    </button>
+                    &nbsp;
+                    <button type="button" class="btn btn-outline-danger" (click)="excluir(vacina.id)">
+                      <i class="bi bi-trash3"></i> Excluir
+                    </button>
+                  </div>
                 </div>
-              </div>
-
-            </td>
-          </tr>
+              </td>
+            </tr>
           }
+
         </tbody>
       </table>
       <div>
-        <a class="btn btn-outline-dark" role="button" aria-pressed="true" href="/vacina/detalhe"> Cadastrar nova vacina</a>
+        <a class="btn btn-outline-dark" role="button" aria-pressed="true" href="/vacina/detalhe"> Cadastrar nova
+          vacina</a>
       </div>
     </div>
   </div>
