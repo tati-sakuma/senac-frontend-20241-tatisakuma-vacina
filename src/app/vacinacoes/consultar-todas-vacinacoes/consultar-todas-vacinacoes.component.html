@@ -2,7 +2,7 @@
   <h3 class="mt-4">Vacinações Cadastradas</h3>
 
   <div class="card">
-    <div class="card-body">
+    <div class="card-body text-center">
       <table class="table table-striped">
         <thead>
           <tr>
@@ -10,9 +10,10 @@
             <th>Nome da vacina</th>
             <th>Data da vacinação</th>
             <th>Avaliação</th>
+            <th>Ações</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody >
           @for (vacinacao of vacinacoes; track vacinacao)
           {
 
