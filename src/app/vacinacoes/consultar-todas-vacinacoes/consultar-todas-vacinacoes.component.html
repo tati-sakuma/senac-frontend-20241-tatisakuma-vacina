@@ -6,7 +6,7 @@
       <table class="table table-striped">
         <thead>
           <tr>
-            <th>ID do vacinado</th>
+            <th>Nome do vacinado</th>
             <th>Nome da vacina</th>
             <th>Data da vacinação</th>
             <th>Avaliação</th>
@@ -15,8 +15,9 @@
         <tbody>
           @for (vacinacao of vacinacoes; track vacinacao)
           {
+
             <tr>
-              <td>{{vacinacao.idPessoa}}</td>
+              <td>{{vacinacao.pessoa.nome}}</td>
               <td>{{vacinacao.vacina.nome}}</td>
               <td>{{vacinacao.data}}</td>
               <td>{{vacinacao.avaliacao}}</td>
@@ -37,8 +38,9 @@
           }
         </tbody>
       </table>
-
+      <div>
+        <a class="btn btn-outline-dark" role="button" aria-pressed="true" href="/vacinacao/detalhe">Cadastrar nova vacinação</a>
+      </div>
     </div>
-
   </div>
 </div>

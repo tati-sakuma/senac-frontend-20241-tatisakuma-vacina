@@ -1,9 +1,10 @@
 import { Data } from "@angular/router";
 import { Vacina } from "./vacina";
+import { Pessoa } from "./pessoa";
 
 export class Vacinacao {
   id: number
-  idPessoa: number;
+  pessoa: Pessoa;
   vacina: Vacina;
   data: Data;
   avaliacao: number;

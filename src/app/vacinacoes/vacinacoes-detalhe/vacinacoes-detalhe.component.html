@@ -5,7 +5,7 @@
     <form class="mt-4">
       <div class="mb-3">
         <label for="nomePessoa" class="form-label">Nome do vacinado</label>
-        <select class="form-control" name="nomePessoa" [(ngModel)]="vacinacao.idPessoa">
+        <select class="form-control" name="nomePessoa" [(ngModel)]="vacinacao.pessoa.id">
           @for(p of pessoas; track p.id) {
           <option [ngValue]="p.id">{{p.nome}}</option>
           }

@@ -16,7 +16,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class VacinaDetalheComponent implements OnInit {
   public vacina: Vacina = new Vacina();
   public paises: Array<Pais> = [];
-  public pesquisadores: Array<Pessoa>;
+  public pesquisadores: Array<Pessoa> = [];
   public idVacina: number;
 
   constructor(
@@ -59,7 +59,7 @@ export class VacinaDetalheComponent implements OnInit {
       (erro) => {
         Swal.fire({
           icon: 'error',
-          text: 'Erro ao salvar nova vacina.' + erro.error.mensagem,
+          text: 'Erro ao salvar nova vacina: ' + erro.error.mensagem,
         });
         console.error('Erro ao salvar nova vacina.');
       }
