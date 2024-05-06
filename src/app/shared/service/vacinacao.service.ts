@@ -15,4 +15,16 @@ export class VacinacaoService {
   consultarTodasVacinacoes(): Observable<Array<Vacinacao>> {
     return this.httpClient.get<Array<Vacinacao>>(this.API + '/todas')
   }
+
+  consultarVacinacaoId(idVacinacao: number): Observable<Vacinacao> {
+    return this.httpClient.get<Vacinacao>(this.API + 'consultar/vacina/' + idVacinacao)
+  }
+
+  salvarNovaVacinacao(novaVacinacao: Vacinacao): Observable<Vacinacao> {
+    return this.httpClient.post<Vacinacao>(this.API + '/salvar', novaVacinacao)
+  }
+
+
+
+
 }

@@ -16,11 +16,15 @@ export class PessoasService {
   }
 
   salvar(novaPessoa: Pessoa): Observable<any> {
-    return this.httpClient.post(this.API + '/salvar', novaPessoa)
+    return this.httpClient.post(this.API + '/salvar', novaPessoa);
   }
 
   consultarPesquisadores(): Observable<Array<Pessoa>>{
     return this.httpClient.get<Array<Pessoa>>(this.API + '/pesquisadores');
+  }
+
+  consultarPessoaId(idPessoa: number): Observable<Pessoa>{
+    return this.httpClient.get<Pessoa>(this.API +'consultar/' + idPessoa);
   }
 
 }
