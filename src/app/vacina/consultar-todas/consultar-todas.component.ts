@@ -10,109 +10,153 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-consultar-todas',
   templateUrl: './consultar-todas.component.html',
-  styleUrl: './consultar-todas.component.scss'
+  styleUrl: './consultar-todas.component.scss',
 })
-
 export class ConsultarTodasComponent implements OnInit {
-
   public vacinas: Array<Vacina> = new Array();
   public seletor: VacinaSeletor = new VacinaSeletor();
   public paises: Array<Pais> = new Array();
+  public readonly TAMANHO_PAGINA: number = 5;
+  public totalPaginas: number = 0;
 
-  constructor(private vacinaService: VacinaService,
-              private paisService: PaisService,
-              private router: Router
-            ) { }
+  constructor(
+    private vacinaService: VacinaService,
+    private paisService: PaisService,
+    private router: Router
+  ) {}
 
-  ngOnInit(): void{
-    this.consultarTodasVacinas();
+  ngOnInit(): void {
+    this.seletor.limite = this.TAMANHO_PAGINA;
+    this.seletor.pagina = 1;
+    this.pesquisar();
     this.consultarTodosPaises();
+    this.contarPaginas();
   }
 
-  public consultarTodasVacinas(): void {
-    this.vacinaService.consultarTodasVacinas().subscribe(
-      resultado => {
+  // public consultarTodasVacinas(): void {
+  //   this.vacinaService.consultarTodasVacinas().subscribe(
+  //     (resultado) => {
+  //       this.vacinas = resultado;
+  //     },
+
+  //     (erro) => {
+  //       Swal.fire({
+  //         title: 'Atenção!',
+  //         text: 'Erro ao consultar todas vacinas: ' + erro.error.mensagem,
+  //         icon: 'error',
+  //       });
+  //     }
+  //   );
+  // }
+
+  public pesquisar() {
+    this.vacinaService.listarComSeletor(this.seletor).subscribe(
+      (resultado) => {
         this.vacinas = resultado;
       },
-
-      erro => {
-        console.error('Erro ao consultar todas as vacinas' + erro);
+      (erro) => {
+        Swal.fire({
+          title: 'Atenção!',
+          text: 'Erro ao pesquisar: ' + erro.error.mensagem,
+          icon: 'error',
+        });
       }
     );
   }
 
-  public consultarPorId(){
-
-  }
-
-  public pesquisar () {
-    this.vacinaService.listarComSeletor(this.seletor).subscribe(
-      resultado => {
-        this.vacinas = resultado;
-      },
-      erro => {
-        console.error('Erro ao consultar filtro de vacinas', erro);
-      }
-    )
-  }
-
-  public limpar(){
+  public limpar() {
     this.seletor = new VacinaSeletor();
-    this.consultarTodasVacinas();
+    this.pesquisar();
   }
 
   public editar(idVacinaSelecionada: number): void {
-    this.router.navigate(['/vacina/detalhe/', idVacinaSelecionada])
+    this.router.navigate(['/vacina/detalhe/', idVacinaSelecionada]);
   }
 
   public excluir(id: number) {
     Swal.fire({
-      title: "Você deseja excluir?",
-      text: "Não será possível reverter a exclusão!",
-      icon: "warning",
+      title: 'Você deseja excluir?',
+      text: 'Não será possível reverter a exclusão!',
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      cancelButtonText: "Cancelar",
-      confirmButtonText: "Sim, continue!"
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'Cancelar',
+      confirmButtonText: 'Sim, continue!',
     }).then((result) => {
       if (result.isConfirmed) {
         this.vacinaService.excluir(id).subscribe(
-
-          resultado => {
+          (resultado) => {
             Swal.fire({
-              title: "Excluída!",
-              text: "A vacina foi excluída com sucesso!",
-              icon: "success"
+              title: 'Excluída!',
+              text: 'A vacina foi excluída com sucesso!',
+              icon: 'success',
             });
-            this.consultarTodasVacinas();
+            this.pesquisar();
           },
-           erro => {
+          (erro) => {
             Swal.fire({
-              title:"Atenção!",
-              text: "Erro ao excluir vacina: " + erro.error.mensagem,
-              icon: "error"
-           });
-
-          console.error('Erro ao excluir vacina.')
-         }
-       )
+              title: 'Atenção!',
+              text: 'Erro ao excluir vacina: ' + erro.error.mensagem,
+              icon: 'error',
+            });
+          }
+        );
       }
     });
-
-
   }
 
   public consultarTodosPaises() {
     this.paisService.consultarTodosPaises().subscribe(
-      resultado => {
+      (resultado) => {
         this.paises = resultado;
       },
-       erro => {
-      console.error('Erro ao consultar todos os países.')
-     }
-    )
+      (erro) => {
+        Swal.fire({
+          title: 'Atenção!',
+          text: 'Erro ao consultar países: ' + erro.error.mensagem,
+          icon: 'error',
+        });
+      }
+    );
   }
 
-}
+  public contarPaginas() {
+    this.vacinaService.contarPaginas(this.seletor).subscribe(
+      (resultado) => {
+        this.totalPaginas = resultado;
+      },
+      (erro) => {
+        Swal.fire({
+          title: 'Atenção!',
+          text: 'Erro ao contar paginas: ' + erro.error.mensagem,
+          icon: 'error',
+        });
+      }
+    );
+  }
 
+  public atualizarPaginacao() {
+    this.contarPaginas();
+    this.pesquisar();
+  }
+
+  public avancarPagina() {
+    this.seletor.pagina = this.seletor.pagina + 1;
+  }
+
+  public voltarPagina() {
+    this.seletor.pagina--;
+  }
+
+  public irParaPagina(indice: number) {
+    this.seletor.pagina = indice;
+    this.pesquisar();
+  }
+
+  public criarArrayPaginas(): any[] {
+    return Array(this.totalPaginas)
+      .fill(0)
+      .map((x, i) => i + 1);
+  }
+}
