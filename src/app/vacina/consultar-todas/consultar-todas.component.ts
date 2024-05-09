@@ -143,10 +143,12 @@ export class ConsultarTodasComponent implements OnInit {
 
   public avancarPagina() {
     this.seletor.pagina = this.seletor.pagina + 1;
+    this.pesquisar();
   }
 
   public voltarPagina() {
-    this.seletor.pagina--;
+    this.seletor.pagina = this.seletor.pagina - 1;
+    this.pesquisar();
   }
 
   public irParaPagina(indice: number) {

@@ -8,6 +8,6 @@ export class Vacina {
   paisOrigem: Pais;
   pesquisadorResponsavel: Pessoa;
   estagio: number;
-  dataInicioPesquisa: Data;
+  dataInicioPesquisa: Date;
   mediaAvaliacao: number;
 }

@@ -6,6 +6,6 @@ export class Vacinacao {
   id: number
   pessoa: Pessoa;
   vacina: Vacina;
-  data: Data;
+  data: Date;
   avaliacao: number;
 }

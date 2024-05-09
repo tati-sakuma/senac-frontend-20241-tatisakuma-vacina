@@ -76,7 +76,7 @@
             <td>{{ vacina.paisOrigem.pais }}</td>
             <td>{{ vacina.pesquisadorResponsavel.nome }}</td>
             <td>{{ vacina.estagio }}</td>
-            <td>{{ vacina.dataInicioPesquisa }}</td>
+            <td>{{ vacina.dataInicioPesquisa | date: 'dd/MM/yyyy'}}</td>
             <td>{{ vacina.mediaAvaliacao }}</td>
             <td>
               <div class="row">
@@ -108,7 +108,7 @@
       <ul class="pagination justify-content-center">
 
         <li class="page-item">
-          <button [disabled]="seletor.pagina == totalPaginas" class="page-link" (click)="voltarPagina()">
+          <button [disabled]="seletor.pagina == 1" class="page-link" (click)="voltarPagina()">
             &laquo;
           </button>
 
@@ -124,7 +124,7 @@
             &raquo;
           </button>
         </li>
-
+        <!-- <pre>Pagina atual{{seletor.pagina}}</pre> -->
       </ul>
     </nav>
   </div>
