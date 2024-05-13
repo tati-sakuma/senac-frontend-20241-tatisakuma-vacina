@@ -1,0 +1,25 @@
+<!-- <pre>{{montadoras | json}}</pre> -->
+<div class="container">
+  <h3 class="mt-4">Montadoras</h3>
+</div>
+
+<div>
+
+  <div>
+    <form >
+      <div class="row">
+        <div>
+          <label for="montadoras">Selecione uma montadora</label>
+          <select class="form-control" name="montadoras" [compareWith]="compareById" [(ngModel)]="idMontadora">
+            @for(m of montadoras; track montadoras){
+              <option [ngValue]="montadoras">Marca {{m.nome}} ({{m.paisFundacao}})</option>
+            }
+          </select>
+        </div>
+
+      </div>
+      <button (click)="consultarEstoqueCarros(idMontadora)">Buscar</button>
+    </form>
+  </div>
+</div>
+

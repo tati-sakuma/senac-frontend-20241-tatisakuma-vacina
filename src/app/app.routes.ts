@@ -18,4 +18,9 @@ export const routes: Routes = [
     loadChildren:() => import('./vacinacoes/vacinacoes.module').then((m) => m.VacinacoesModule)
   },
 
+  {
+    path: 'carro',
+    loadChildren:() => import('./carros/carros.module').then((m) => m.CarrosModule)
+  },
+
 ];

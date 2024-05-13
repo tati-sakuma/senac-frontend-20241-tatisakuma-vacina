@@ -1,0 +1,81 @@
+<pre>{{seletor | json}}</pre>
+<pre>{{carros | json}}</pre>
+
+<div class="container">
+  <h3 class="mt-4">Consultar Carros</h3>
+
+  <div class="card mt-4">
+    <div class="card-header" style="background-color: #b8ffca70;">
+      <h5>Filtros</h5>
+    </div>
+    <div class="card-body">
+      <form class="card-header">
+        <div class="row">
+
+          <div class="col-md-3">
+            <label for="marca">Marca</label>
+            <input type="text" class="form-control" name="marca" [(ngModel)]="seletor.nomeMarca">
+          </div>
+
+          <div class="col-md-3">
+            <label for="modelo">Modelo</label>
+            <input type="text" name="modelo" class="form-control" [(ngModel)]="seletor.modelo">
+          </div>
+          <div class="col-md-3">
+            <label for="anoInicial">Ano Inicial</label>
+            <input type="text" name="anoInicial" class="form-control" [(ngModel)]="seletor.anoInicial">
+          </div>
+          <div class="col-md-3">
+            <label for="anoFinal">Ano Final</label>
+            <input type="text" name="anoFinal" class="form-control" [(ngModel)]="seletor.anoFinal">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-3">
+            <label for="nome">&nbsp;</label>
+            <button type="button" class="form-control btn btn-outline-dark" (click)="consultarComFiltros()">
+              <i class="bi bi-search"></i> Pesquisar
+            </button>
+          </div>
+
+          <div class="col-md-3">
+            <label for="nome">&nbsp;</label>
+            <button type="button" class="form-control btn btn-outline-dark" (click)="limpar()" >
+              <i class="bi bi-x-circle"></i> Limpar
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="card mt-3">
+    <div class="card-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Placa</th>
+            <th>Modelo</th>
+            <th>Montadora</th>
+            <th>Ano</th>
+            <th>Valor</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for(carro of carros; track carro)
+          {
+          <tr>
+            <td>{{ carro.placa }}</td>
+            <td>{{ carro.modelo}}</td>
+            <td>{{ carro.montadora.nome }}</td>
+            <td>{{ carro.ano }}</td>
+            <td>{{ carro.valor | currency: "R$ " }}</td>
+
+          </tr>
+          }
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
