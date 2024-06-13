@@ -1,0 +1,74 @@
+<!-- <pre>{{idJogador }}</pre>
+<pre>{{jogador}}</pre> -->
+<!-- <pre>{{atributoSelecionado}}</pre> -->
+
+<div>
+  <div class="col-md-3 ">
+    <label for="jogador">Jogador</label>
+    <select class="form-control" name="jogador" [(ngModel)]="idJogador">
+      @for(j of jogadores; track jogadores) {
+      <option value="{{ j.id}}">{{ j.nome }} ({{ j.email }})</option>
+      }
+    </select>
+  </div>
+  <div>
+    <div class="col-md-3">
+      <label for="nome">&nbsp;</label>
+      <button type="button" class="form-control btn btn-outline-dark" (click)="iniciarPartida()">
+        Iniciar X1
+      </button>
+    </div>
+  </div>
+
+  <div>
+    <div>
+      <h5>Cartas Disponíveis</h5>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Força</th>
+            <th>Velocidade</th>
+            <th>Inteligência</th>
+            <th>Data de cadastro</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @for(c of cartas; track cartas)
+          {
+          <tr>
+            <td>{{ c.carta.nome }}</td>
+            <td>{{ c.carta.forca }}</td>
+            <td>{{ c.carta.velocidade }}</td>
+            <td>{{ c.carta.inteligencia }}</td>
+            <td>{{ c.carta.dataCadastro| date: 'dd/MM/yyyy'}}</td>
+
+            <td>
+              <label for="jogador">atributo</label>
+              <select class="form-control" name="atributo" [(ngModel)]="atributoSelecionado">
+                @for(a of atributos; track atributos) {
+                <option value="{{ a }}"> {{ a }} </option>
+                }
+              </select>
+            </td>
+
+            <td>
+              <div class="row">
+                <div>
+                  <button type="button" class="btn btn-outline-dark" (click)="jogarCarta()">
+                    Jogar carta
+                  </button>
+
+                </div>
+              </div>
+            </td>
+          </tr>
+          }
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>

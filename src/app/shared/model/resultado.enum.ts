@@ -1,0 +1,6 @@
+export enum Resultado {
+  EM_ANDAMENTO,
+	VITORIA_CPU,
+	VITORIA_JOGADOR,
+	EMPATE
+}
